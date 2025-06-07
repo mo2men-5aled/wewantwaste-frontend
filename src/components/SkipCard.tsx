@@ -10,9 +10,12 @@ import {
   Tooltip,
   HStack,
   Tag,
+  Image,
 } from '@chakra-ui/react'
 import { TimeIcon } from '@chakra-ui/icons'
 import type { Skip } from '../types'
+
+import Placeholder from "../assets/image.png"
 
 interface SkipCardProps {
   skip: Skip
@@ -29,7 +32,6 @@ const SkipCard = ({ skip, isSelected, onSelect }: SkipCardProps) => {
   const mutedColor = useColorModeValue('gray.600', 'gray.400')
   const priceColor = useColorModeValue('teal.600', 'teal.300')
 
-  // Updated: Use dynamic colors for additional costs bg and border
   const additionalCostsBorderColor = isSelected ? 'teal.400' : defaultBorderColor
   const defaultAdditionalCostsBg = useColorModeValue('gray.50', 'gray.700')
   const additionalCostsBg = isSelected ? borderColor : defaultAdditionalCostsBg
@@ -55,6 +57,13 @@ const SkipCard = ({ skip, isSelected, onSelect }: SkipCardProps) => {
       overflow="hidden"
     >
       <VStack spacing={4} align="stretch">
+            <Image
+              src={Placeholder}
+              alt={`${skip.size} Yard Skip`}
+              
+              objectFit="cover"
+              borderRadius="md"
+            />
         <Flex justify="space-between" align="center">
           <VStack align="start" spacing={1}>
             <Text fontWeight="bold" fontSize="2xl" color={textColor}>
@@ -94,26 +103,26 @@ const SkipCard = ({ skip, isSelected, onSelect }: SkipCardProps) => {
                 bg={additionalCostsBg}
                 minWidth="10rem"
               >
-                <Text fontWeight="medium" fontSize="sm" mb={1} color={isSelected? "dark" : textColor}>
+                <Text fontWeight="medium" fontSize="sm" mb={1} color={isSelected ? 'dark' : textColor}>
                   Additional Costs
                 </Text>
                 <VStack spacing={1} align="start">
                   {skip.transport_cost && (
                     <HStack spacing={2}>
-                      <Text fontSize="sm" color={isSelected? "dark" : mutedColor}>
+                      <Text fontSize="sm" color={isSelected ? 'dark' : mutedColor}>
                         🚚 Transport:
                       </Text>
-                      <Text fontSize="sm" fontWeight="medium" color={isSelected? "dark" : textColor}>
+                      <Text fontSize="sm" fontWeight="medium" color={isSelected ? 'dark' : textColor}>
                         £{skip.transport_cost}
                       </Text>
                     </HStack>
                   )}
                   {skip.per_tonne_cost && (
                     <HStack spacing={2}>
-                      <Text fontSize="sm" color={isSelected? "dark" : mutedColor}>
+                      <Text fontSize="sm" color={isSelected ? 'dark' : mutedColor}>
                         ⚖️ Per Tonne:
                       </Text>
-                      <Text fontSize="sm" fontWeight="medium" color={isSelected? "dark" : textColor}>
+                      <Text fontSize="sm" fontWeight="medium" color={isSelected ? 'dark' : textColor}>
                         £{skip.per_tonne_cost}
                       </Text>
                     </HStack>
